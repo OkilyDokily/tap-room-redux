@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { v4 } from 'uuid'
+import { v4 } from 'uuid';
+import { connect } from 'react-redux';
+import { addKeg,editKeg } from '../Actions/index'
 
 Form.propTypes = {
   edit: PropTypes.object,
@@ -9,7 +11,8 @@ Form.propTypes = {
 
 function Form(props) {
 
-  const addKeg = (e) => {
+  const { dispatch } = props;
+  const addAKeg = (e) => {
     e.preventDefault();
     let obj =
     {
@@ -21,9 +24,11 @@ function Form(props) {
       pints: (props.edit.edit) ? parseInt(document.getElementById("pints").value) : 124,
     }
     if (props.edit.edit) {
-      props.onEditKeg(obj)
+   
+      props.onEditKeg(obj);
     }
     else {
+      dispatch(addKeg(obj));
       props.onAddKeg(obj);
     }
   }
@@ -33,26 +38,26 @@ function Form(props) {
     textAlign: "center"
   }
 
-  const kegAddEditButton ={
+  const kegAddEditButton = {
     width: "206px",
-    marginTop:"16px",
+    marginTop: "16px",
     padding: "10px",
-    backgroundColor:"white",
-    cursor:"pointer"
+    backgroundColor: "white",
+    cursor: "pointer"
   }
 
   return (
 
-    <form style={formStyle} onSubmit={addKeg}>
-      <input placeholder="Name" type="text" id="name" defaultValue={props.edit.edit ? props.edit.details.name : null} required/>
-      <input placeholder="Brand" type="text" id="brand" defaultValue={props.edit.edit ? props.edit.details.brand : null} required/>
-      <input placeholder="Price" type="number" step="0.01" id="price" defaultValue={props.edit.edit ? props.edit.details.price : null} required/>
-      <input placeholder="Alcohol Content in %" type="number" step="0.1" id="alcoholcontent" defaultValue={props.edit.edit ? props.edit.details.alcoholContent : null} required/>
-      {props.edit.edit ? <input  type="number" step="1" id="pints" defaultValue={props.edit.details.pints} required/> : null}
-      <input style={kegAddEditButton} type="submit" id="keg-add-edit-button" value={props.edit.edit ? "Edit Keg" : "Add Keg"}/>
+    <form style={formStyle} onSubmit={addAKeg}>
+      <input placeholder="Name" type="text" id="name" defaultValue={props.edit.edit ? props.edit.details.name : null} required />
+      <input placeholder="Brand" type="text" id="brand" defaultValue={props.edit.edit ? props.edit.details.brand : null} required />
+      <input placeholder="Price" type="number" step="0.01" id="price" defaultValue={props.edit.edit ? props.edit.details.price : null} required />
+      <input placeholder="Alcohol Content in %" type="number" step="0.1" id="alcoholcontent" defaultValue={props.edit.edit ? props.edit.details.alcoholContent : null} required />
+      {props.edit.edit ? <input type="number" step="1" id="pints" defaultValue={props.edit.details.pints} required /> : null}
+      <input style={kegAddEditButton} type="submit" id="keg-add-edit-button" value={props.edit.edit ? "Edit Keg" : "Add Keg"} />
     </form>
 
   );
 }
 
-export default Form;
+export default connect()(Form);

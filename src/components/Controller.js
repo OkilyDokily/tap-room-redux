@@ -3,30 +3,14 @@ import TapList from './TapList'
 import Details from './Details'
 import Form from './Form'
 import Modal from 'react-modal';
+import {editKeg,addKeg,deleteKeg} from '../Actions/index'
+import { connect } from 'react-redux';
 
-export default class Controller extends Component {
+
+class Controller extends Component {
   constructor() {
-   
-    let obj = {
-      id: 1,
-      name: "Sam Goody",
-      brand: "Excellence",
-      price: 6.95,
-      alcoholContent: 8.5,
-      pints: 124
-    }
-
-    let obj2 = {
-      id: 2,
-      name: "Caviar Island",
-      brand: "Partition",
-      price:8.95,
-      alcoholContent: 9,
-      pints: 124
-    }
     super()
     this.state = {
-      tapList: [{ ...obj }, { ...obj2 }],
       details: null, //object
       currentView: "TapList",
       isOpen: false
@@ -40,23 +24,15 @@ export default class Controller extends Component {
   }
 
   handleAddKeg = (tap) => {
-    this.state.tapList.push(tap);
-    this.setState({ tapList: this.state.tapList });
     this.setState({ currentView: "TapList" })
   }
 
   handleDeleteKeg = (id) => {
-    const index = this.state.tapList.findIndex(x => x.id === id);
-    let newarr = this.state.tapList.slice();
-    newarr.splice(index, 1)
-    this.setState({ tapList: newarr })
     this.setState({ currentView: "TapList" })
   }
 
   handleEditKeg = (tap) => {
-    const result = this.state.tapList.find(x => x.id === tap.id);
-    Object.assign(result, tap);
-    this.setState({ tapList: this.state.tapList })
+    this.props.dispatch(editKeg(obj));
     this.setState({ currentView: "TapList" })
   }
 
@@ -186,3 +162,5 @@ export default class Controller extends Component {
     }
   }
 }
+
+export default connect()(Controller);
