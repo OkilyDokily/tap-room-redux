@@ -1,0 +1,55 @@
+<mxfile>
+    <diagram id="9aCACkPjMACSSw6Bw4A5" name="Page-1">
+        <mxGraphModel dx="655" dy="518" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="BxOyB2o1oen8FpWH0a-8-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="10" y="160" width="600" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="BxOyB2o1oen8FpWH0a-8-2" value="Controller -state manager" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="160" width="190" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="BxOyB2o1oen8FpWH0a-8-4" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="190" width="120" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="BxOyB2o1oen8FpWH0a-8-5" value="TapList" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="200" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="BxOyB2o1oen8FpWH0a-8-6" value="Tap Item" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="65" y="230" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="BxOyB2o1oen8FpWH0a-8-7" value="Tap Item" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="65" y="280" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="BxOyB2o1oen8FpWH0a-8-8" value="Tap Item" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="65" y="330" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="BxOyB2o1oen8FpWH0a-8-9" value="Tap Item" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="65" y="380" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="BxOyB2o1oen8FpWH0a-8-10" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="170" y="190" width="120" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="BxOyB2o1oen8FpWH0a-8-11" value="Form" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="200" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="BxOyB2o1oen8FpWH0a-8-12" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="190" width="120" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="BxOyB2o1oen8FpWH0a-8-13" value="Details Page" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="200" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="_3eLiBlc23sVwbfhkTxR-1" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="305" y="240" width="120" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="_3eLiBlc23sVwbfhkTxR-2" value="Modal from npm package" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="345" y="230" width="40" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="JSX (form for modal)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="325" y="340" width="80" height="80" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
