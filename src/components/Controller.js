@@ -3,52 +3,39 @@ import TapList from './TapList'
 import Details from './Details'
 import Form from './Form'
 import Modal from 'react-modal';
-import {editKeg,addKeg,deleteKeg} from '../Actions/index'
+import {editKeg,addKeg, deleteKeg, purchasePint,changeView, changeDetails,changeModal} from '../Actions/index'
 import { connect } from 'react-redux';
 
 
 class Controller extends Component {
-  constructor() {
-    super()
-    this.state = {
-      details: null, //object
-      currentView: "TapList",
-      isOpen: false
-    }
-  }
 
   handleShowDetails = (id) => {
-    const result = this.state.tapList.filter(x => x.id === id)[0];
-    this.setState({ details: result });
-    this.setState({ currentView: "Details" });
+    const result = this.props.tapList[id];
+    this.props.dispatch(changeDetails(result))
+    this.props.dispatch(changeView("Details"))
   }
 
   handleAddKeg = (tap) => {
-    this.setState({ currentView: "TapList" })
+    this.props.dispatch(addKeg(tap));
+    this.props.dispatch(changeView("TapList"))
   }
 
   handleDeleteKeg = (id) => {
-    this.setState({ currentView: "TapList" })
+    this.props.dispatch(deleteKeg(id));
+    this.props.dispatch(changeView("TapList"))
   }
 
   handleEditKeg = (tap) => {
-    this.props.dispatch(editKeg(obj));
-    this.setState({ currentView: "TapList" })
+    this.props.dispatch(editKeg(tap));
+    this.props.dispatch(changeView("TapList"))
   }
 
   changeCurrentView = (view) => {
-    this.setState({ currentView: view })
+    this.props.dispatch(changeView(view))
   }
 
   handlePurchasePint = (id) => {
-    const result = this.state.tapList.filter(x => x.id === id)[0];
-    result.pints--;
-    if (result.pints < 0) {
-      result.pints++;
-      this.setState({ Pints: result.pints })
-      return;
-    }
-    this.setState({ Pints: result.pints })
+   this.props.dispatch(purchasePint(id))
   }
 
   openModal = () => {
@@ -60,7 +47,7 @@ class Controller extends Component {
   }
 
   setIsOpen = (isOpen) => {
-    this.setState({ isOpen: isOpen });
+    this.props.dispatch(changeModal(isOpen))
   }
 
   render() {
@@ -110,17 +97,17 @@ class Controller extends Component {
       display: "flex"
     }
 
-    switch (this.state.currentView) {
+    switch (this.props.currentView) {
       case "TapList":
         return (
           <React.Fragment>
-            <TapList goToAddForm={this.changeCurrentView.bind(null, "Add")} onPurchasePint={this.handlePurchasePint} onShowDetails={this.handleShowDetails} tapList={this.state.tapList} />
+            <TapList goToAddForm={this.changeCurrentView.bind(null, "Add")} onPurchasePint={this.handlePurchasePint} onShowDetails={this.handleShowDetails} tapList={this.props.tapList} />
           </React.Fragment>
         )
       case "Details":
         return (
           <React.Fragment>
-            <Details details={this.state.details} onEdit={this.changeCurrentView} />
+            <Details details={this.props.details} onEdit={this.changeCurrentView} />
             <div style={detailsButtons} id="details-buttons">
               <button className="edit-and-delete-buttons" style={editAndDeleteButtons} onClick={() => this.changeCurrentView("Edit")}>Edit Keg</button>
               <button className="edit-and-delete-buttons" id="delete" style={{ ...editAndDeleteButtons, ...deleteButton }} onClick={() => this.openModal()} >Delete Keg</button>
@@ -128,7 +115,7 @@ class Controller extends Component {
             <br />
             <button className="return-to-list-button" style={returnToListButton} onClick={() => this.changeCurrentView("TapList")}>Return to List</button>
             <Modal
-              isOpen={this.state.isOpen}
+              isOpen={this.props.isOpen}
               appElement={document.getElementById("root")}
               onRequestClose={this.closeModal}
               style={customStyles}
@@ -136,7 +123,7 @@ class Controller extends Component {
               <form>
                 <h3>Are you sure you want to delete this item?</h3>
                 <div id="yes-and-no-buttons" style={yesAndNoButtons}>
-                  <button onClick={() => { this.handleDeleteKeg(this.state.details.id); this.closeModal() }}>Yes</button>
+                  <button onClick={() => { this.handleDeleteKeg(this.props.details.id); this.closeModal() }}>Yes</button>
                   <button onClick={this.closeModal}>No</button>
                 </div>
               </form>
@@ -154,7 +141,7 @@ class Controller extends Component {
       case "Edit":
         return (
           <React.Fragment>
-            <Form edit={{edit: true, details: this.state.details }} onEditKeg={this.handleEditKeg} />
+            <Form edit={{edit: true, details: this.props.details }} onEditKeg={this.handleEditKeg} />
             <button className="return-to-list-button" style={returnToListButton} onClick={() => this.changeCurrentView("TapList")}>Return to List</button>
           </React.Fragment>
         )
@@ -163,4 +150,13 @@ class Controller extends Component {
   }
 }
 
-export default connect()(Controller);
+const mapStatetoProps = (state) => {
+  return{
+    tapList: state.kegs.kegs,
+    isOpen: state.interface.isOpen,
+    details: state.interface.details,
+    currentView: state.interface.currentView
+  }
+}
+
+export default connect(mapStatetoProps)(Controller);

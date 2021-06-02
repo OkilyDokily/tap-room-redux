@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
-import { connect } from 'react-redux';
-import { addKeg,editKeg } from '../Actions/index'
 
 Form.propTypes = {
   edit: PropTypes.object,
   onAddKegs: PropTypes.func
 };
 
-function Form(props) {
-
-  const { dispatch } = props;
+export default function Form(props) {
+  
   const addAKeg = (e) => {
     e.preventDefault();
     let obj =
@@ -24,11 +21,9 @@ function Form(props) {
       pints: (props.edit.edit) ? parseInt(document.getElementById("pints").value) : 124,
     }
     if (props.edit.edit) {
-   
       props.onEditKeg(obj);
     }
     else {
-      dispatch(addKeg(obj));
       props.onAddKeg(obj);
     }
   }
@@ -60,4 +55,3 @@ function Form(props) {
   );
 }
 
-export default connect()(Form);

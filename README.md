@@ -1,4 +1,4 @@
-# _Tap Room_
+# _Tap Room Redux_
 
 #### _This demonstrates beginner level javascript/React._
 
@@ -7,7 +7,8 @@
 
 ## Description
 
-_A tap room made with React._
+_A tap room made with React and refactored for redux._
+_This is a refactor of a previous project called 'Tap Room'_
 _Lets the users add Kegs to a tap room_
      
 ## Setup/Installation Requirements

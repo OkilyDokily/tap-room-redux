@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TapItem from './TapItem'
 
 TapList.propTypes = {
-  tapList: PropTypes.arrayOf(PropTypes.object),
+  tapList: PropTypes.object,
   onPurchasePint:PropTypes.func,
   showDetails: PropTypes.func,
   goToAddForm: PropTypes.func
@@ -60,7 +60,7 @@ function TapList(props) {
       <div style={bottomLine}>Alcohol Content in %</div>
       <div style={lastBotton}>Pints Left</div>
       <div></div>
-      {props.tapList.map(x => <TapItem key={x.id} purchasePint={props.onPurchasePint} showDetails={props.onShowDetails} details={x} />)}
+      {Object.keys(props.tapList).map(x => <TapItem key={props.tapList[x].id} purchasePint={props.onPurchasePint} showDetails={props.onShowDetails} details={props.tapList[x]} />)}
       <div></div>
       <button id="add-keg" style={tapListButton} onClick={props.goToAddForm}>Add Keg</button>
     </div>
