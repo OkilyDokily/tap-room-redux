@@ -10,6 +10,15 @@ describe("kegs", () => {
     pints: 124
   }
 
+  let obj2 = {
+    id: 4,
+    name: "Kramer",
+    brand: "Ovals",
+    price: 3.95,
+    alcoholContent: 3,
+    pints: 0
+  }
+
   test("add keg", () => {
     let result = reducer(undefined, {
       type: "ADD_KEG", keg: obj
@@ -50,6 +59,26 @@ describe("kegs", () => {
 
     expect(result.kegs[1].pints).toEqual(123);
   });
+
+  test("Purchase Pint stays at zero", () => {
+    let result = reducer(undefined, {
+      type: "ADD_KEG", keg: obj2
+    })
+   
+    let result2 = reducer(result, {
+      type: "PURCHASE_PINT", id: 4
+    })
+
+    expect(result2.kegs[4].pints).toEqual(0);
+  });
+
+  test("returns default if incorrect reducer", () => {
+    let result = reducer(undefined, {
+      type: "ADD_KEG", keg: obj
+    })
+    let result2 = reducer(result, { type: "DELETE_KE", id:3 });
+    expect(result).toEqual(result2);
+  })
 
 
 });

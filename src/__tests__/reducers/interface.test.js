@@ -24,4 +24,10 @@ describe("interface",()=>{
     let result = reducer(undefined, { type: "CHANGE_MODAL", bool:true });
     expect(result.isOpen).toEqual(true);
   })
+
+  test("returns default if incorrect reducer", () => {
+    let result = reducer(undefined, { type: "CHANGE_MODAL", bool: true });
+    let result2 = reducer(result, { type: "CHANGE_DETAI", obj });
+    expect(result).toEqual(result2);
+  })
 })
